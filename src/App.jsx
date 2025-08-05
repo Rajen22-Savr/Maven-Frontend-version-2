@@ -7,7 +7,6 @@ import React, { useState, useEffect } from "react";
 export default function MavenCopilotV2() {
   const [file, setFile] = useState(null);
   const [response, setResponse] = useState(null);
-  const [dynamicInsights, setDynamicInsights] = useState([]);
   const [prompt, setPrompt] = useState("");
   const [copilotReply, setCopilotReply] = useState("");
 
@@ -42,7 +41,6 @@ export default function MavenCopilotV2() {
       });
       const data = await res.json();
       setResponse(data);
-      setDynamicInsights(data.dynamic_insights || []);
     } catch (err) {
       console.error("Upload failed:", err);
     }
@@ -105,25 +103,25 @@ export default function MavenCopilotV2() {
                 <h4 className="font-semibold mb-2">🔧 Recommended Actions</h4>
                 <ul className="list-disc pl-5 text-sm">
                   {response.actions.map((item, idx) => (
+
+{dynamicInsights.length > 0 && (
+  <div className="bg-white p-6 rounded-lg shadow md:col-span-2">
+    <h4 className="font-semibold mb-2">🤖 AI-Generated Insights</h4>
+    <ul className="list-disc pl-5 text-sm space-y-2">
+      {dynamicInsights.map((insight, idx) => (
+        <li key={idx}>
+          <strong>{insight.type}:</strong> {insight.insight_text} <br />
+          <em>{insight.recommended_action}</em>
+        </li>
+      ))}
+    </ul>
+  </div>
+)}
                     <li key={idx}><strong>{item.type}</strong>: {item.supplier || item.note}</li>
                   ))}
                 </ul>
               </div>
             </div>
-              {dynamicInsights.length > 0 && (
-                <div className="bg-white p-6 rounded-lg shadow md:col-span-2">
-                  <h4 className="font-semibold mb-2">🤖 AI-Generated Insights</h4>
-                  <ul className="list-disc pl-5 text-sm space-y-2">
-                    {dynamicInsights.map((insight, idx) => (
-                      <li key={idx}>
-                        <strong>{insight.type}:</strong> {insight.insight_text} <br />
-                        <em>{insight.recommended_action}</em>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-
           )}
         </section>
 
