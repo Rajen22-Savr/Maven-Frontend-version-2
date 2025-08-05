@@ -10,23 +10,23 @@ export default function MavenCopilotV2() {
   const [prompt, setPrompt] = useState("");
   const [copilotReply, setCopilotReply] = useState("");
 
-  useEffect(() => {
-    setResponse({
-      top_suppliers: [
-        { "Supplier Name": "ZAPP (GB) LTD", "Potential Savings": 66329 },
-        { "Supplier Name": "CARPENTER TECH CORP", "Potential Savings": 52333 }
-      ],
-      outliers: [
-        { "Supplier Name": "SIGNICAST", "Item Name": "Sleeve", "CY vs PY WAP USD (Fiscal)": 13537 },
-        { "Supplier Name": "YARDE METALS", "Item Name": "Cap", "CY vs PY WAP USD (Fiscal)": -360 }
-      ],
-      actions: [
-        { type: "Renegotiate Pricing", supplier: "ZAPP (GB) LTD" },
-        { type: "Consolidate Tail Spend", supplier: "YARDE METALS" },
-        { type: "Rationalize Materials", note: "3 suppliers showing overlap in stainless parts" }
-      ]
-    });
-  }, []);
+  //useEffect(() => {
+    //setResponse({
+     // top_suppliers: [
+       // { "Supplier Name": "ZAPP (GB) LTD", "Potential Savings": 66329 },
+       // { "Supplier Name": "CARPENTER TECH CORP", "Potential Savings": 52333 }
+      //],
+      //outliers: [
+       // { "Supplier Name": "SIGNICAST", "Item Name": "Sleeve", "CY vs PY WAP USD (Fiscal)": 13537 },
+        //{ "Supplier Name": "YARDE METALS", "Item Name": "Cap", "CY vs PY WAP USD (Fiscal)": -360 }
+      //],
+      //actions: [
+       // { type: "Renegotiate Pricing", supplier: "ZAPP (GB) LTD" },
+        //{ type: "Consolidate Tail Spend", supplier: "YARDE METALS" },
+        //{ type: "Rationalize Materials", note: "3 suppliers showing overlap in stainless parts" }
+      //]
+    //});
+  //}, []);
 
   const handleFileChange = (e) => setFile(e.target.files[0]);
 
