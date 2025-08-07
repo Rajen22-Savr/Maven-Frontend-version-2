@@ -35,7 +35,7 @@ export default function MavenCopilotV2() {
     const formData = new FormData();
     formData.append("file", file);
     try {
-      const res = await fetch("https://maven-backend-j2mj.onrender.com/upload/", {
+      const res = await fetch("https://maven-backend.onrender.com/upload/", {
         method: "POST",
         body: formData
       });
