@@ -7,9 +7,9 @@ import React, { useState, useEffect } from "react";
 export default function MavenCopilotV2() {
   const [file, setFile] = useState(null);
   const [response, setResponse] = useState(null);
-  const [dynamicInsights, setDynamicInsights] = useState([]);
   const [prompt, setPrompt] = useState("");
   const [copilotReply, setCopilotReply] = useState("");
+  const [dynamicInsights, setDynamicInsights] = useState([]);
 
   //useEffect(() => {
     //setResponse({
@@ -42,7 +42,7 @@ export default function MavenCopilotV2() {
       });
       const data = await res.json();
       setResponse(data);
-        setDynamicInsights(data.dynamic_insights || []);
+      setDynamicInsights(data.dynamic_insights || []);
     } catch (err) {
       console.error("Upload failed:", err);
     }
@@ -106,6 +106,7 @@ export default function MavenCopilotV2() {
                 <ul className="list-disc pl-5 text-sm">
                   {response.actions.map((item, idx) => (
                     <li key={idx}><strong>{item.type}</strong>: {item.supplier || item.note}</li>
+                  ))}
 
               {dynamicInsights.length > 0 && (
                 <div className="bg-white p-6 rounded-lg shadow md:col-span-2">
@@ -120,7 +121,6 @@ export default function MavenCopilotV2() {
                   </ul>
                 </div>
               )}
-                      ))}
                 </ul>
               </div>
             </div>
