@@ -8,7 +8,6 @@ export default function MavenCopilotV2() {
   const [file, setFile] = useState(null);
   const [response, setResponse] = useState(null);
   const [prompt, setPrompt] = useState("");
-  const [dynamicInsights, setDynamicInsights] = useState([]);
   const [copilotReply, setCopilotReply] = useState("");
 
   //useEffect(() => {
@@ -42,7 +41,6 @@ export default function MavenCopilotV2() {
       });
       const data = await res.json();
       setResponse(data);
-      setDynamicInsights(data.dynamic_insights || []);
     } catch (err) {
       console.error("Upload failed:", err);
     }
